@@ -140,6 +140,59 @@ void postOrder_iterative(Node *root) {
 }
 
 
+void inOrder_iterative(struct Node *root)
+{
+	stack<Node *> s;
+	Node *curr = root;
+
+	while (curr != NULL || s.empty() == false)
+	{
+		while (curr !=  NULL)
+		{
+			s.push(curr);
+			curr = curr->left;
+		}
+
+		curr = s.top();
+		s.pop();
+
+		cout << curr->data << " ";
+
+		curr = curr->right;
+
+	}
+}
+
+void levelOrder(Node* root) {
+	if (!root)
+		return;
+
+	queue<Node*> q;
+	q.push(root);
+
+
+	while (!q.empty()) {
+		Node* curr = q.front();
+		q.pop();
+
+		if (curr) {
+			cout << curr->data << " ";
+
+			if (curr->left) {
+				q.push(curr->left);
+			}
+
+			if (curr->right) {
+				q.push(curr->right);
+			}
+		}
+
+	}
+
+}
+
+
+
 int32_t main()
 {
 	subham_cc99();
@@ -157,7 +210,11 @@ int32_t main()
 	// postOrder(root);
 
 	// preOrder_iterative(root);
-	postOrder_iterative(root);
+	// inOrder_iterative(root);
+
+
+	levelOrder(root);
+
 
 	return 0;
 }
