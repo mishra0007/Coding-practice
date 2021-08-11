@@ -191,6 +191,38 @@ void levelOrder(Node* root) {
 
 }
 
+int height(Node *root) {
+	if (!root)
+		return 0;
+
+	return 1 + max(height(root->left), height(root->right));
+}
+
+
+int diameter(Node *root, int& ans) {
+	if (!root)
+		return 0;
+
+	int l = diameter(root->left, ans);
+	int r = diameter(root->right, ans);
+
+	ans = max(ans, 1 + l + r);
+
+	return 1 + max(l, r);
+}
+
+int balance(Node *root) {
+	if (!root)
+		return 1;
+
+	int l = height(root->left);
+	int r = height(root->right);
+
+	if (abs(l - r) > 1)
+		return 0;
+
+	return balance(root->left) and balance(root->right);
+}
 
 
 int32_t main()
@@ -202,8 +234,7 @@ int32_t main()
 	root->right = new Node(3);
 	root->left->left = new Node(4);
 	root->left->right = new Node(5);
-	root->right->left = new Node(6);
-	root->right->right = new Node(7);
+	root->left->left->left = new Node(8);
 
 	// preOrder(root);
 	// inOrder(root);
@@ -213,8 +244,13 @@ int32_t main()
 	// inOrder_iterative(root);
 
 
-	levelOrder(root);
+	// levelOrder(root);
+	// cout  << endl;
+	// cout << height(root) << endl;
 
-
+	// int ans = 0;
+	// diameter(root, ans);
+	// cout << ans << endl;
+	cout << balance(root);
 	return 0;
 }
