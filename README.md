@@ -16,3 +16,4 @@
 - [sort 0's and 1's](https://github.com/mishra0007/Coding-practice/blob/main/sort_zero_one.cpp)
 - [sort 0's, 1's and 2's](https://github.com/mishra0007/Coding-practice/blob/main/sort_zero_one_two.cpp)
 - [stocks buy and sell](https://github.com/mishra0007/Coding-practice/blob/main/stock_sell_buy.cpp)
+- [Binary Tree All Methods Like pre/post/in order traversal , Diameter of a tree .. etc](https://github.com/mishra0007/Coding-practice/blob/main/binaryTree.cpp)
