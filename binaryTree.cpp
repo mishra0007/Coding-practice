@@ -140,6 +140,91 @@ void postOrder_iterative(Node *root) {
 }
 
 
+void inOrder_iterative(struct Node *root)
+{
+	stack<Node *> s;
+	Node *curr = root;
+
+	while (curr != NULL || s.empty() == false)
+	{
+		while (curr !=  NULL)
+		{
+			s.push(curr);
+			curr = curr->left;
+		}
+
+		curr = s.top();
+		s.pop();
+
+		cout << curr->data << " ";
+
+		curr = curr->right;
+
+	}
+}
+
+void levelOrder(Node* root) {
+	if (!root)
+		return;
+
+	queue<Node*> q;
+	q.push(root);
+
+
+	while (!q.empty()) {
+		Node* curr = q.front();
+		q.pop();
+
+		if (curr) {
+			cout << curr->data << " ";
+
+			if (curr->left) {
+				q.push(curr->left);
+			}
+
+			if (curr->right) {
+				q.push(curr->right);
+			}
+		}
+
+	}
+
+}
+
+int height(Node *root) {
+	if (!root)
+		return 0;
+
+	return 1 + max(height(root->left), height(root->right));
+}
+
+
+int diameter(Node *root, int& ans) {
+	if (!root)
+		return 0;
+
+	int l = diameter(root->left, ans);
+	int r = diameter(root->right, ans);
+
+	ans = max(ans, 1 + l + r);
+
+	return 1 + max(l, r);
+}
+
+int balance(Node *root) {
+	if (!root)
+		return 1;
+
+	int l = height(root->left);
+	int r = height(root->right);
+
+	if (abs(l - r) > 1)
+		return 0;
+
+	return balance(root->left) and balance(root->right);
+}
+
+
 int32_t main()
 {
 	subham_cc99();
@@ -149,15 +234,23 @@ int32_t main()
 	root->right = new Node(3);
 	root->left->left = new Node(4);
 	root->left->right = new Node(5);
-	root->right->left = new Node(6);
-	root->right->right = new Node(7);
+	root->left->left->left = new Node(8);
 
 	// preOrder(root);
 	// inOrder(root);
 	// postOrder(root);
 
 	// preOrder_iterative(root);
-	postOrder_iterative(root);
+	// inOrder_iterative(root);
 
+
+	// levelOrder(root);
+	// cout  << endl;
+	// cout << height(root) << endl;
+
+	// int ans = 0;
+	// diameter(root, ans);
+	// cout << ans << endl;
+	cout << balance(root);
 	return 0;
 }
